@@ -1,0 +1,49 @@
+<div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Sign in</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal">
+             <div class="form-group">
+                  <label for="inputEmail" class="control-label col-md-2">Email</label>
+                  <div class="col-md-10">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputPassword" class="control-label col-md-2">Password</label>
+                  <div class="col-md-10">
+                      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-md-offset-2 col-md-10">
+                      <div class="checkbox">
+                          <label><input type="checkbox"> Remember me</label>
+                          <label><a href="#">Forget email or password?</a></label>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-md-offset-2 col-md-10">
+                      <a href="profile_individual.html" type="submit" class="btn btn-primary">Signin</a>&nbsp;&nbsp;
+                      <a href="profile_org.html" type="submit" class="btn btn-primary">Signup</a>
+                  </div>
+              </div>
+      </form>
+        </div>
+        <div class="modal-footer social">
+          <a href="#"><%= image_tag "social icons/facebook.png" %></a>
+          <a href="#"><%= image_tag "social icons/linkedin.png" %></a>
+          <a href="#"><%= image_tag "social icons/googlep.png" %></a>
+          <a href="#"><%= image_tag "social icons/twitter.png" %></a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
