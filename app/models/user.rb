@@ -1,8 +1,17 @@
 class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
+  has_many :replies
   has_many :identities
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
+
+  mount_uploader :avatar, AvatarUploader
+  # attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  # after_update :crop_avatar
+
+  # def crop_avatar
+  #   avatar.recreate_versions! if crop_x.present?
+  # end
 
   # Include default devise modules. Others available are: :confirmable,
   # :lockable, :timeoutable
@@ -36,7 +45,7 @@ class User < ActiveRecord::Base
         user = User.new(
           name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
-          avatar: auth.info.image,
+          # avatar: auth.info.image,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )

@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery-popover
+//= require clipboard
 //= require turbolinks
 //= require_tree .
+

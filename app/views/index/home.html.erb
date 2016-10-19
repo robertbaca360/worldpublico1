@@ -1,16 +1,12 @@
-<%= render 'layouts/navbar'%>
-<div class="container">
+
 
 <div class="form-inline search-form">
-  <select class="form-control" >
-    <option>Select Organization...</option>
-    <option>Non Profit</option>
-    <option>Non Profit</option>
-    <option>Non Profit</option>
-    <option>Non Profit</option>
-  </select>
-  <input type="text" class="form-control" name="" placeholder="Type Keyword...">
-  <%= link_to '<span class="glyphicon glyphicon-search"></span> Search'.html_safe, index_search_path, class: "btn btn-primary" %>
+  <%= form_for(:search_form, url:index_search_path, :method => 'get') do |f| %>
+      <%= select_tag :org, options_for_select([ "Individual", "Organization" ], "Individual"), class: "form-control" %>
+      <%= text_field_tag :search, '', placeholder: "Type Keyword...", class:"form-control" %>
+      <%= f.submit 'Search', class: "btn btn-primary" %>
+  <% end %>
+   <!--<%= link_to '<span class="glyphicon glyphicon-search"></span> Search'.html_safe, index_search_path, class: "btn btn-primary" %>-->
 </div>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -46,23 +42,15 @@
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       </div>
     </div>
-    <div class="item">
-      <%= image_tag "slides/slide4.jpg" %>
-      <div class="carousel-caption">
-        <h3>WorldPublico</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-      </div>
-    </div>
 
   </div>
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
     <span class="sr-only">Previous</span>
   </a>
   <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
     <span class="sr-only">Next</span>
   </a>
-</div>
 </div>

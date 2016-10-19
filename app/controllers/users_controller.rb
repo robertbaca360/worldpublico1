@@ -4,12 +4,17 @@ class UsersController < ApplicationController
     # GET /users/:id.:format
   def show
     #authorize! :read, @user
-    #@microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 5 )
+    @micropost = current_user.microposts.build if user_signed_in?
+    @reply = current_user.replies.build if user_signed_in?
   end
 
   # GET /users/:id/edit
   def edit
     # authorize! :update, @user
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 5 )
+    @micropost = current_user.microposts.build if user_signed_in?
+    @reply = current_user.replies.build if user_signed_in?
   end
 
   # PATCH/PUT /users/:id.:format
@@ -57,7 +62,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [ :name, :email ] # extend with your own params
+      accessible = [ :name, :email, :address, :tel, :website, :about, :mission, :avatar, :category ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

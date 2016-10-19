@@ -1,73 +1,31 @@
-<%= render 'layouts/navbar'%>
-<div class="container">
 
 <div class="form-inline search-form">
-  <select class="form-control" >
-    <option>Select Organization...</option>
-    <option>option1</option>
-    <option>option1</option>
-    <option>option1</option>
-    <option>option1</option>
-  </select>
-  <input type="text" class="form-control" name="" placeholder="Type Keyword...">
-  <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</a>
+  <%= form_for(:search_form, url:index_search_path, :method => 'get') do |f| %>
+      <%= select_tag :org, options_for_select([ "Individual", "Organization" ], "Individual"), class: "form-control" %>
+      <%= text_field_tag :search, '', placeholder: "Type Keyword...", class:"form-control" %>
+      <%= f.submit 'Search', class: "btn btn-primary" %>
+  <% end %>
 </div>
 <div class="search-result">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>User</th>
-      <th>User Story</th>
-      <th>Website/Location</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td><%= image_tag "user.png", class: "avatar" %></td>
-      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-      <td>xyz123.com<br>Chicago, US</td>
-    </tr>
-    <tr>
-      <td><%= image_tag "user.png", class: "avatar" %></td>
-      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-      <td>xyz123.com<br>Chicago, US</td>
-    </tr>
-    <tr>
-      <td><%= image_tag "user.png", class: "avatar" %></td>
-      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-      <td>xyz123.com<br>Chicago, US</td>
-    </tr>
-    <tr>
-      <td><%= image_tag "user.png", class: "avatar" %></td>
-      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-      <td>xyz123.com<br>Chicago, US</td>
-    </tr>
-    <tr>
-      <td><%= image_tag "user.png", class: "avatar" %></td>
-      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-      <td>xyz123.com<br>Chicago, US</td>
-    </tr>
-    <tr>
-      <td><%= image_tag "user.png", class: "avatar" %></td>
-      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-      <td>xyz123.com<br>Chicago, US</td>
-    </tr>
-    <tr>
-      <td><%= image_tag "user.png", class: "avatar" %></td>
-      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-      <td>xyz123.com<br>Chicago, US</td>
-    </tr>
 
-    </tbody>
-  </table>
-  <div>
-    <ul class="pagination">
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-    </ul>
-  </div>
-</div>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>User</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Website</th>
+            <th>Created at</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if @users %>
+          <%= render @users %>
+          <% else %>
+           <tr><td>No result...</td></tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @users, :previous_label => '<<', :next_label => '>>' if @users %>
+
 </div>
