@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
-          name: auth.extra.raw_info.name,
+          name: auth.info.name,
           #username: auth.info.nickname || auth.uid,
           # avatar: auth.info.image,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",

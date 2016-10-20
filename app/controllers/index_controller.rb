@@ -5,8 +5,8 @@ class IndexController < ApplicationController
   def search
     #@users = User.all
     if params[:search] != ''
-       @users = User.where( "name LIKE ? AND category != ?", "%#{params[:search]}%", '' ).order("name DESC") if params[:org] == "Organization"
-       @users = User.where([ "name LIKE ? AND category = ?", "%#{params[:search]}%", '' ]).order("name DESC") if params[:org] == "Individual"
+       @users = User.where( "name LIKE ? AND category != ?", "%#{params[:search]}%", '0' ).order("name DESC") if params[:org] == "Organization"
+       @users = User.where([ "name LIKE ? AND category = ?", "%#{params[:search]}%", '0' ]).order("name DESC") if params[:org] == "Individual"
     else
       # @users = User.all.order('created_at DESC')
     end

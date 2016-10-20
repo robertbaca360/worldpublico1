@@ -276,6 +276,6 @@ Devise.setup do |config|
   config.omniauth :linkedin, "78uzhr8u70v5we", "OueBvw3ISApYAXry"
   config.omniauth :twitter, "PGVvSt4C3tOwTPvab8wA1qNH8", "YNKWu7JtKhEVKLuwQII4XUNbggRJTVnFXkIYRA4LImrqELzSvg"
   config.omniauth :facebook, "666410580201991", "2f85341d65f23c46334eb007087b9af9"
-  config.omniauth :google, "123", "abc"
+  config.omniauth :google, "21348902195-2ea2i30vm910n3rbu4ina1cbjofjqp9l.apps.googleusercontent.com", "AIzaSyDR-SX8MB9CpJAl6vCla9WYzV9NQ7vtSts"
 
 end

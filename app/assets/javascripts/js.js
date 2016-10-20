@@ -1,16 +1,16 @@
 
 $(document).ready(function(){
-    $('.trigger').popover({
-        my: 'left bottom',
-        at: 'left top',
-        collision: 'flip flip'
-    });
+    // $('.trigger').popover({
+    //     my: 'left bottom',
+    //     at: 'left top',
+    //     collision: 'flip flip'
+    // });
 
-    var clip = new Clipboard('.btn');
-    console.log(clip);
+    // var clip = new Clipboard('.btn');
+    // console.log(clip);
 
-    $('#copy').click(function(){
-       $(this).html('Copied');
-    });
+    // $('#copy').click(function(){
+    //    $(this).html('Copied');
+    // });
 
 });

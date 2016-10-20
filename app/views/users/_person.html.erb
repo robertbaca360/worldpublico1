@@ -17,6 +17,20 @@
           </div><!-- /input-group -->
           To share your profile, please update your settings to allow anyone to see your profile.
         </div>
+        <script>
+            $('.trigger').popover({
+                my: 'left bottom',
+                at: 'left top',
+                collision: 'flip flip'
+            });
+
+            var clip = new Clipboard('.btn');
+            console.log(clip);
+
+            $('#copy').click(function(){
+                $(this).html('Copied');
+            });
+        </script>
       </div>
       <div class="col-md-3">
         <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
