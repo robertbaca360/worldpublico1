@@ -101,5 +101,6 @@ Rails.application.configure do
       user_name: 'coolplum1213@gmail.com',
       password: 'gjdgjfahajrnd1213',
       authentication: :plain,
-      domain: 'worldpublic.herokuapp.co
+      domain: 'worldpublic.herokuapp.co'
+    }
 end
