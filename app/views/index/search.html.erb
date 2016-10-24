@@ -19,7 +19,7 @@
           </tr>
           </thead>
           <tbody>
-          <% if @users %>
+          <% unless @users.nil? %>
           <%= render @users %>
           <% else %>
            <tr><td>No result...</td></tr>
