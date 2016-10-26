@@ -22,7 +22,7 @@
                 <li><%= link_to '<span class="glyphicon glyphicon-user"></span> Profile'.html_safe, user_path(current_user) %></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-edit"></span> Update'.html_safe, edit_user_path(current_user) %></li>
                 <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> Log out'.html_safe, destroy_user_session_path, :method => :delete %></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-remove"></span> Delete'.html_safe, user_path(current_user), 'method': 'delete', 'data-confirm': 'Are you sure?' %></li>
+                <li><%= link_to '<span class="glyphicon glyphicon-remove"></span> Delete'.html_safe, user_path(current_user), :method => :delete, 'data-confirm': 'Are you sure?' %></li>
               </ul>
             </li>
         <% else %>
