@@ -50,6 +50,7 @@ class UsersController < ApplicationController
   # DELETE /users/:id.:format
   def destroy
     # authorize! :delete, @user
+    @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
       format.html { redirect_to root_url }
