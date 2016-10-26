@@ -23,10 +23,10 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
+  # config.assets.compile = false
   config.assets.digest = true
   config.serve_static_assets = true
   config.assets.compile = true
-
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -85,10 +85,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  # config by coolplum
-  config.action_mailer.default_url_options = { host: 'worldpublic.herokuapp.com', port: 80 }
 
-  config.app_domain = 'worldpublic.herokuapp.com'
+  config.action_mailer.default_url_options = { host: 'worldpublico.herokuapp.com', port: 80 }
+
+  config.app_domain = 'worldpublico.herokuapp.com'
 
   # Email
   config.action_mailer.delivery_method = :smtp
@@ -98,9 +98,10 @@ Rails.application.configure do
       address: 'smtp.gmail.com',
       port: '587',
       enable_starttls_auto: true,
-      user_name: 'coolplum1213@gmail.com',
-      password: 'gjdgjfahajrnd1213',
+      user_name: '',
+      password: '',
       authentication: :plain,
-      domain: 'worldpublic.herokuapp.com'
-  }
+      domain: 'worldpublico.herokuapp.co'
+    }
+
 end

@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.paginate(page: params[:page], per_page: 5 )
     @micropost = current_user.microposts.build if user_signed_in?
     @reply = current_user.replies.build if user_signed_in?
+    @identity = current_user.identities.build if user_signed_in?
   end
 
   # PATCH/PUT /users/:id.:format
@@ -50,10 +51,11 @@ class UsersController < ApplicationController
   def destroy
     # authorize! :delete, @user
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.json { head :no_content }
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to root_url }
+    #   format.json { head :no_content }
+    # end
+    redirect_to root_url
   end
   
   private

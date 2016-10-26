@@ -3,7 +3,7 @@
 <div class="form-inline search-form">
   <%= form_for(:search_form, url:index_search_path, :method => 'get') do |f| %>
       <%= select_tag :org, options_for_select([ "Individual", "Organization" ], "Individual"), class: "form-control" %>
-      <%= text_field_tag :search, '', placeholder: "Type Keyword...", class:"form-control" %>
+      <!-- <%= text_field_tag :search, '', placeholder: "Type Keyword...", class:"form-control" %>-->
       <%= f.submit 'Search', class: "btn btn-primary" %>
   <% end %>
    <!--<%= link_to '<span class="glyphicon glyphicon-search"></span> Search'.html_safe, index_search_path, class: "btn btn-primary" %>-->
@@ -11,37 +11,37 @@
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
-  </ol>
+  <!--<ol class="carousel-indicators">-->
+    <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+    <!--<li data-target="#myCarousel" data-slide-to="1"></li>-->
+    <!--<li data-target="#myCarousel" data-slide-to="2"></li>-->
+    <!--<li data-target="#myCarousel" data-slide-to="3"></li>-->
+  <!--</ol>-->
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 
     <div class="item active">
       <%= image_tag "slides/slide1.jpg" %>
-      <div class="carousel-caption">
-        <h3>WorldPublico</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-      </div>
+      <!--<div class="carousel-caption">-->
+        <!--<h3>WorldPublico</h3>-->
+        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
+      <!--</div>-->
     </div>
-    <div class="item">
-      <%= image_tag "slides/slide2.jpg" %>
-      <div class="carousel-caption">
-        <h3>WorldPublico</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-      </div>
-    </div>
-    <div class="item">
-      <%= image_tag "slides/slide3.jpg" %>
-      <div class="carousel-caption">
-        <h3>WorldPublico</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-      </div>
-    </div>
+    <!--<div class="item">-->
+      <!--<%= image_tag "slides/slide2.jpg" %>-->
+      <!--<div class="carousel-caption">-->
+        <!--<h3>WorldPublico</h3>-->
+        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="item">-->
+      <!--<%= image_tag "slides/slide3.jpg" %>-->
+      <!--<div class="carousel-caption">-->
+        <!--<h3>WorldPublico</h3>-->
+        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
+      <!--</div>-->
+    <!--</div>-->
 
   </div>
   <!-- Left and right controls -->

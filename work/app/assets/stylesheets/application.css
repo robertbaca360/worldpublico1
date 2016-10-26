@@ -24,8 +24,9 @@
     width: 300px;
 }
 body{
-    background: url('background.jpg');
-    background-size: cover;
+    /*background: url('background.jpg');*/
+    /*background-size: cover;*/
+    background: lightblue;
     padding-top: 100px;
 }
 h1,h2,h3,h4,h5,h6{
@@ -62,6 +63,10 @@ h1,h2,h3,h4,h5,h6{
     width: 120px;
     margin: 5px;
 }
+.social a{
+    /*font-size: 17px;*/
+    color: #3289C8;
+}
 .avatar{
     width: 50px;
 }
@@ -81,6 +86,13 @@ h1,h2,h3,h4,h5,h6{
 }
 #avatar-file{
     display: none !important;
+}
+.add_social_form{
+    display: none;
+}
+#add_social{
+    font-size: 17px;
+    margin-left: 20px;
 }
 .cam:hover{
     cursor: pointer;

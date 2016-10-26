@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
-  has_many :replies
-  has_many :identities
+  has_many :replies, dependent: :destroy
+  has_many :identities, dependent: :destroy
+  has_many :active_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent:   :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
@@ -13,9 +17,26 @@ class User < ActiveRecord::Base
   #   avatar.recreate_versions! if crop_x.present?
   # end
 
+  # Follows a user.
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+
   # Include default devise modules. Others available are: :confirmable,
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,  :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  devise :database_authenticatable, :validatable, password_length: 8..128
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
@@ -40,11 +61,12 @@ class User < ActiveRecord::Base
       email = auth.info.email if email_is_verified
       user = User.where(:email => email).first if email
 
+
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
           name: auth.info.name,
-          #username: auth.info.nickname || auth.uid,
+          # username: auth.info.nickname || auth.uid,
           # avatar: auth.info.image,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]

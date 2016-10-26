@@ -18,22 +18,32 @@
   <div class="row">
     <div class="col-md-6">
       <div class="col-md-5">
-        <div class="user-image" style="background: url('<%= @user.avatar %>')">
-          <%= f.file_field :avatar, id:'avatar-file' %>
+        <div class="user-image" style="background: url('<%= @user.avatar %>'); background-size: 100%;">
+          <%= f.file_field :avatar, id:'avatar-file', onchange: 'setimage()' %>
           <%= image_tag src="cam.png", class: "cam" %>
         </div><br><br>
         <script>
             $('.cam').bind("click" , function () {
                 $('#avatar-file').click();
             });
+
+            function setimage(){
+                $('form').eq(0).submit();
+            }
         </script>
-        <button class="btn btn-primary">Follow</button>
+
+        <div>
+          <%= @user.following.count %> following |
+          <%= @user.followers.count %> followers
+        </div>
       </div>
       <div class="col-md-7 detail">
         <table class="table table-striped">
           <tr>
             <td><span class="glyphicon glyphicon-list"></span></td>
-            <td><%= f.text_field :category, class:'form-control',value: @user.category %></td>
+            <% category = @user.category unless @user.category == '1' %>
+            <% category = @user.name if @user.category == '1'  %>
+            <td><%= f.text_field :category, class:'form-control',value: category %></td>
           </tr>
           <tr>
             <td><span class="glyphicon glyphicon-globe"></span></td>
@@ -56,11 +66,25 @@
       </div>
     </div>
     <div class="col-md-6">
-      <h3>Social Media</h3>
+      <h3>Social Media  <a href="#" id="add_social" data-toggle="modal" data-target="#Modal">&plus; add link</a></h3>
       <div class="social">
         <% @user.identities.each do|provider| %>
-            <%= link_to image_tag( "social icons/#{provider.provider}.png" ), "https://www.#{provider.provider}.com/app_scoped_user_id/#{provider.uid}" %><br>
+            <%= link_to image_tag( "social icons/#{provider.provider}.png" ), provider.url %>&nbsp; &nbsp;
+            <%= link_to 'Delete', identity_path(provider.id), :method => :delete, 'data-confirm':'Are you sure?' %>
+            <input type="hidden" value="<%= provider.id %>" class="identity_id"> &nbsp;|&nbsp;
+            <input type="hidden" value="<%= provider.url %>" class="identity_url">
+            <a href="#" data-toggle="modal" data-target="#Modal1" class="edit_social">Edit</a>
+            <br>
         <% end %>
+        <script>
+          $('.edit_social').bind("click" , function (){
+              index = $('.edit_socia').index($(this));
+              id = $('.identity_id').eq(index).val();
+              url = $('.identity_url').eq(index).val();
+              $('#edit_social_form').attr('action', '/identities/' + id );
+              $('#_url').val(url);
+          });
+        </script>
       </div>
     </div>
   </div>
@@ -95,4 +119,6 @@
     <% end %>
   </div>
   </div>
+  <%= render 'users/modal' %>
+  <%= render 'users/modal1' %>
 
