@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
   # devise_for :users, :controllers => { registrations: 'registrations' }
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
   resources :users
   resources :microposts
   resource :replies
