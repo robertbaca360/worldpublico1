@@ -61,9 +61,23 @@
       <h3>Social Media <a href="#" id="add_social" data-toggle="modal" data-target="#Modal">&plus; add link</a></h3>
       <div class="social">
         <% @user.identities.each do|provider| %>
-            <%= link_to image_tag( "social icons/#{provider.provider}.png" ), provider.url %><br>
+            <%= link_to image_tag( "social icons/#{provider.provider}.png" ), provider.url %>
+            <%= link_to 'Delete', identity_path(provider.id), :method => :delete, 'data-confirm':'Are you sure?' %>
+            <input type="hidden" value="<%= provider.id %>" class="identity_id"> &nbsp;|&nbsp;
+            <input type="hidden" value="<%= provider.url %>" class="identity_url">
+            <a href="#" data-toggle="modal" data-target="#Modal1" class="edit_social">Edit</a>
+            <br>
         <% end %>
       </div>
+  <script>
+      $('.edit_social').bind("click" , function (){
+          index = $('.edit_socia').index($(this));
+          id = $('.identity_id').eq(index).val();
+          url = $('.identity_url').eq(index).val();
+          $('#edit_social_form').attr('action', '/identities/' + id );
+          $('#_url').val(url);
+      });
+  </script>
     </div>
   </div>
 
@@ -87,3 +101,4 @@
   </div>
 
 <%= render 'users/modal' %>
+<%= render 'users/modal1' %>

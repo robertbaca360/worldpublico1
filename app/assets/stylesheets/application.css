@@ -63,6 +63,10 @@ h1,h2,h3,h4,h5,h6{
     width: 120px;
     margin: 5px;
 }
+.social a{
+    /*font-size: 17px;*/
+    color: #3289C8;
+}
 .avatar{
     width: 50px;
 }

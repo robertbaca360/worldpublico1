@@ -48,26 +48,29 @@
         <h4><%= @user.following.count %> following |
         <%= @user.followers.count %> followers</h4>
         <% if user_signed_in? %>
-          <% if @user != current_user %>
-              <% if current_user.following?(@user) %>
-                  <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
-                               html: { method: :delete }) do |f| %>
-                      <%= f.submit "Unfollow", class: "btn btn-primary" %>
-                  <% end %>
-              <% else %>
-                  <%= form_for(current_user.active_relationships.build) do |f| %>
-                      <div><%= hidden_field_tag :followed_id, @user.id %></div>
-                      <%= f.submit "Follow", class: "btn btn-primary" %>
-                  <% end %>
-              <% end %>
-          <% end %>
+            <% if @user != current_user %>
+                <% if current_user.following?(@user) %>
+                    <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+                                 html: { method: :delete }) do |f| %>
+                        <%= f.submit "Unfollow", class: "btn btn-primary" %>
+                    <% end %>
+                <% else %>
+                    <%= form_for(current_user.active_relationships.build) do |f| %>
+                        <div><%= hidden_field_tag :followed_id, @user.id %></div>
+                        <%= f.submit "Follow", class: "btn btn-primary" %>
+                    <% end %>
+                <% end %>
+            <% end %>
         <% end %>
       </div>
       <div class="col-md-7 detail">
         <table class="table table-striped">
           <tr>
             <td><span class="glyphicon glyphicon-list"></span></td>
-            <td><%= @user.category %></td>
+            <td>
+              <%= @user.category unless @user.category == '1' %>
+              <%= @user.name if @user.category == '1' %>
+            </td>
           </tr>
           <tr>
             <td><span class="glyphicon glyphicon-globe"></span></td>
