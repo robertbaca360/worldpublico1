@@ -58,17 +58,17 @@ Rails.application.configure do
   config.app_domain = 'localhost:3000'
 
   # Email
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: config.app_domain }
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      port: '587',
-      enable_starttls_auto: true,
-      user_name: 'coolplum1213@gmail.com',
-      password: 'gjdgjfahajrnd1213',
-      authentication: :plain,
-      domain: 'localhost:3000'
-  }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.default_url_options = { host: config.app_domain }
+  # config.action_mailer.smtp_settings = {
+  #     address: 'smtp.gmail.com',
+  #     port: '587',
+  #     enable_starttls_auto: true,
+  #     user_name: '',
+  #     password: '',
+  #     authentication: :plain,
+  #     domain: 'localhost:3000'
+  # }
 
 end

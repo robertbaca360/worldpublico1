@@ -276,7 +276,8 @@ Devise.setup do |config|
   config.omniauth :linkedin, "86ab909so6jrw2", "6ie49UTZJvozpLJR"
   config.omniauth :twitter, "LhK339M4DuiYWELFzWKUO4lJm", "E5mn7lxIjszc3zexTTqOri4aSWwz1TWberjAHBSYP1BFAGdjxi"
   config.omniauth :facebook, "327169324320191", "85d9bd52fcf0acabfe5e8775a0c649cd"
-  config.omniauth :google, "268074670217-4lues9a1fkp7rhtu9df1a5djglcpdvid.apps.googleusercontent.com", "deKXakQ4R4kiH45pwor3can-"
+  # delete client ID and secret key for google API....
+  # config.omniauth :google, "268074670217-4lues9a1fkp7rhtu9df1a5djglcpdvid.apps.googleusercontent.com", "deKXakQ4R4kiH45pwor3can-"
 end
 
 #   config.omniauth :linkedin, "78uzhr8u70v5we", "OueBvw3ISApYAXry"

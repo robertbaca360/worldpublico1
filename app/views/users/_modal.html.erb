@@ -7,8 +7,12 @@
         <h4 class="modal-title">Add Social Link</h4>
       </div>
       <div class="modal-body form-inline">
+
         <%= form_for(@identity) do |f| %>
-            <%=f.select :provider, options_for_select([ "facebook", "linkedin", "twitter", "google" ], "facebook"), {}, class:"form-control" %>
+            <!-- <%=f.select :provider, options_for_select([ "facebook", "linkedin", "twitter", "google" ], "facebook"), {}, class:"form-control" %>
+             -->
+             <!-- delete provide for google log in function.... -->
+            <%=f.select :provider, options_for_select([ "facebook", "linkedin", "twitter"], "facebook"), {}, class:"form-control" %>
             <%=f.url_field :url, placeholder: "Type url...", class:"form-control" %>
             <%=f.submit 'Add', class: "btn btn-primary" %>
         <% end %>
