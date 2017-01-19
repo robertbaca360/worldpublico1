@@ -12,47 +12,47 @@
 
 ActiveRecord::Schema.define(version: 20161024154720) do
 
-  create_table "identities", force: :cascade do |t|
+  create_table "identities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_identities_on_user_id"
+    t.index ["user_id"], name: "index_identities_on_user_id", using: :btree
   end
 
-  create_table "microposts", force: :cascade do |t|
-    t.text     "content"
+  create_table "microposts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",    limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_microposts_on_user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
+    t.index ["user_id"], name: "index_microposts_on_user_id", using: :btree
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   end
 
-  create_table "replies", force: :cascade do |t|
-    t.text     "content"
+  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",      limit: 65535
     t.integer  "micropost_id"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["micropost_id"], name: "index_replies_on_micropost_id"
-    t.index ["user_id", "micropost_id", "created_at"], name: "index_replies_on_user_id_and_micropost_id_and_created_at"
-    t.index ["user_id"], name: "index_replies_on_user_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["micropost_id"], name: "index_replies_on_micropost_id", using: :btree
+    t.index ["user_id", "micropost_id", "created_at"], name: "index_replies_on_user_id_and_micropost_id_and_created_at", using: :btree
+    t.index ["user_id"], name: "index_replies_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -67,14 +67,18 @@ ActiveRecord::Schema.define(version: 20161024154720) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "address"
-    t.integer  "tel"
+    t.string   "tel"
     t.string   "website"
     t.string   "category"
     t.string   "about"
     t.string   "mission"
     t.string   "avatar"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "identities", "users"
+  add_foreign_key "microposts", "users"
+  add_foreign_key "replies", "microposts"
+  add_foreign_key "replies", "users"
 end

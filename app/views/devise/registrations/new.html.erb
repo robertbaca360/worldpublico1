@@ -1,7 +1,8 @@
+<%= render'layouts/header' %>
 <div class="container">
   <div class="col-md-12">
     <div class="modal-header">
-      <h2 class="modal-title">Sign up</h2>
+      <h2 class="modal-title title_details">Sign up</h2>
       <%= devise_error_messages! %>
     </div>
     <div class="modal-body">
@@ -59,8 +60,4 @@
 <script>
     $('form.new_user').addClass('form-horizontal');
 </script>
-<style>
-    body{
-        background: none;
-    }
-</style>
+

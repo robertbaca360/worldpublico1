@@ -13,8 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require wow.min
 //= require jquery-popover
 //= require clipboard
 //= require turbolinks
 //= require_tree .
 
+jQuery(function($) {
+
+new WOW().init();
+
+});

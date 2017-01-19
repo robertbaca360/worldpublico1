@@ -1,54 +1,99 @@
+<%= render'layouts/header_home' %>
+
+<% if user_signed_in? %>
+<% else %>
+
+
+
+    <div class="row wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+      <div class="col-sm-12 title">
+        <h2 class="title">Philanthropy with  <strong>Purpose</strong> </h2>
+        <p> <strong>BETA</strong></p>
+      </div>
+    </div>
+    <div class="container wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+      <div class="col-sm-6 col-sm-offset-3 singup">
+        <div class="modal-header">
+
+          <h3 class="modal-title title_details">Sign Up Now</h3>
+          <%= devise_error_messages! %>
+        </div>
+        <div class="modal-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name) ) do |f| %>
+              <div class="form-group">
+
+
+                <%= f.email_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"Email" %><br />
+
+              </div>
+              <div class="form-group">
+
+                <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"Password" %>
+                <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %>
+                <label class="control-label">(8 characters require)</label>
+
+              </div>
+              <div class="form-group">
+
+                <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"Password Confirmation" %>
+
+              </div>
+              <div class="form-group">
+
+                <div class="row check_status">
+                  <div class="col-md-4">
+                    <div class="checkbox">
+                      <%= f.check_box :category %>
+                      <%= f.label :Organization %>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="checkbox">
+                      <input type="checkbox">
+                      <%= f.label :Individual %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group">
+
+                <%= f.submit "Sign up", class:"btn btn-primary" %>
+
+              </div>
+          <% end %>
+          <h3 class="title_details">Or login with </h3>
+          <div class="modal-footer social">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script>
+      $('form.new_user').addClass('form-horizontal');
+    </script>
+
+
+
+<% end %>
+
+
+
+
+
+
+
 
 
 <div class="form-inline search-form">
   <%= form_for(:search_form, url:index_search_path, :method => 'get') do |f| %>
-      <%= select_tag :org, options_for_select([ "Individual", "Organization" ], "Individual"), class: "form-control" %>
+      <%= select_tag :org, options_for_select([ "Individual", "Organization" ], "Individual"), class: "form-control search_box" %>
       <!-- <%= text_field_tag :search, '', placeholder: "Type Keyword...", class:"form-control" %>-->
       <%= f.submit 'Search', class: "btn btn-primary" %>
   <% end %>
    <!--<%= link_to '<span class="glyphicon glyphicon-search"></span> Search'.html_safe, index_search_path, class: "btn btn-primary" %>-->
 </div>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <!--<ol class="carousel-indicators">-->
-    <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
-    <!--<li data-target="#myCarousel" data-slide-to="1"></li>-->
-    <!--<li data-target="#myCarousel" data-slide-to="2"></li>-->
-    <!--<li data-target="#myCarousel" data-slide-to="3"></li>-->
-  <!--</ol>-->
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <%= image_tag "slides/slide1.jpg" %>
-      <!--<div class="carousel-caption">-->
-        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
-      <!--</div>-->
-    </div>
-    <!--<div class="item">-->
-      <!--<%= image_tag "slides/slide2.jpg" %>-->
-      <!--<div class="carousel-caption">-->
-        <!--<h3>WorldPublico</h3>-->
-        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="item">-->
-      <!--<%= image_tag "slides/slide3.jpg" %>-->
-      <!--<div class="carousel-caption">-->
-        <!--<h3>WorldPublico</h3>-->
-        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
-      <!--</div>-->
-    <!--</div>-->
-
-  </div>
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-    <span class="sr-only">Next</span>
-  </a>
-</div>
